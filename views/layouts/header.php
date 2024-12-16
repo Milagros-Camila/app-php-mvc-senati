@@ -19,9 +19,11 @@ $userRole = $isAuthenticated ? $_SESSION['rol'] : '';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="<?= BASE_URL ?>/assets/css/style.css" rel="stylesheet">
+    
 </head>
 
 <body>
+    
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="<?= BASE_URL ?>">CRUD Productos</a>
@@ -43,7 +45,7 @@ $userRole = $isAuthenticated ? $_SESSION['rol'] : '';
                         </li>
                     <?php endif; ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= BASE_URL ?>/agenda">Agenda</a>
+                        <a class="nav-link" href="<?= BASE_URL ?>/empleados">Empleados</a>
                     </li>
                 </ul>
                 <?php if ($isAuthenticated): ?>

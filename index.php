@@ -57,11 +57,39 @@ $router->add('GET', 'productos/', 'ProductoController','index');
 //CRUD PRODUCTOS - trae de la BASE DE DATOS
 $router->add('GET', 'productos/obtener-todo', 'ProductoController','obtenerProducto');
 
-//AGENDA -diseño
-$router->add('GET', 'agenda', 'AgendaController', 'index');
+// en el archivo Router.php
+$router->add('GET', 'empleados', 'EmpleadoController', 'index');
+$router->add('GET', 'empleado/create', 'EmpleadoController', 'create');
+$router->add('POST', 'empleado/create', 'EmpleadoController', 'create');
+$router->add('GET', 'empleado/edit/{id}', 'EmpleadoController', 'edit');
+$router->add('POST', 'empleado/edit/{id}', 'EmpleadoController', 'edit');
+$router->add('GET', 'empleado/delete/{id}', 'EmpleadoController', 'delete');
 
-$router->add('GET', 'agenda/create', 'AgendaController', 'create');  // Para agregar una tarea
-$router->add('POST', 'agenda/store', 'AgendaController', 'store');  // Para guardar la nueva tarea
+
+// Obtener la URL limpia
+$url = isset($_GET['url']) ? $_GET['url'] : '';
+$url = trim($url, '/');
+// index.php o router.php
+if (isset($_GET['url'])) {
+    $url = $_GET['url'];
+
+    // Ruta para agregar un nuevo empleado
+    if ($url == 'empleado/create') {
+        $controller = new EmpleadoController();
+        $controller->create();
+    }
+    // Ruta para listar los empleados
+    elseif ($url == 'empleado') {
+        $controller = new EmpleadoController();
+        $controller->index();
+    }
+    // Manejo de rutas no encontradas
+    else {
+        echo "Página no encontrada.";
+    }
+}
+
+
 
 //Despachar la ruta
 try {

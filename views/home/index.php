@@ -6,6 +6,7 @@
     <title>Document</title>
 </head>
 <body>
+    
 <div class="row">
     <div class="col-md-12 text-center mb-4">
         <h1>Bienvenido al Sistema de Gestión de Productos</h1>
