@@ -56,8 +56,16 @@ $router->add('GET', '/home', 'HomeController','index');
 $router->add('GET', 'productos/', 'ProductoController','index');
 //CRUD PRODUCTOS - trae de la BASE DE DATOS
 $router->add('GET', 'productos/obtener-todo', 'ProductoController','obtenerProducto');
+$router->add('POST', 'productos/guardar-producto', 'ProductoController','guardarProducto');//con esto vas a producto controller
+$router->add('POST', 'productos/actualizar-producto', 'ProductoController','actualizarProducto');
+$router->add('DELETE', 'productos/eiminar-producto', 'ProductoController','eliminarProducto');
+$router->add('GET', 'productos/buscar-producto', 'ProductoController','buscarProducto');
 
-// en el archivo Router.php
+
+
+
+
+// EMPLEADOS
 $router->add('GET', 'empleados', 'EmpleadoController', 'index');
 $router->add('GET', 'empleado/create', 'EmpleadoController', 'create');
 $router->add('POST', 'empleado/create', 'EmpleadoController', 'create');
@@ -85,7 +93,7 @@ if (isset($_GET['url'])) {
     }
     // Manejo de rutas no encontradas
     else {
-        echo "Página no encontrada.";
+        //echo "Página no encontrada.";
     }
 }
 

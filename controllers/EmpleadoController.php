@@ -53,7 +53,7 @@ class EmpleadoController {
     // Crear un nuevo empleado
     public function create() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            var_dump($_POST)
+            
             // Procesar el formulario
 
             $nombre = $_POST['nombre'];

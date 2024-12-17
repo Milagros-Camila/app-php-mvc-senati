@@ -87,7 +87,7 @@
                     <div class="mb-3">
                         <label for="price" class="form-label">Precio</label>
                         <div class="input-group">
-                            <span class="input-group-text">$</span>
+                            <span class="input-group-text">S/.</span>
                             <input type="number" class="form-control" id="price" step="0.01" required>
                         </div>
                     </div>
@@ -106,7 +106,7 @@
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                     <i class="fas fa-times"></i> Cerrar
                 </button>
-                <button type="button" class="btn btn-primary" onclick="saveProduct()">
+                <button type="button" class="btn btn-primary" onclick='guardarProducto()'>
                     <i class="fas fa-save"></i> Guardar
                 </button>
             </div>

@@ -74,7 +74,7 @@ class AuthController
         header('Content-Type: application/json');
 
         try {
-            $data = json_decode(file_get_contents("php://input"));
+            $data = json_decode(file_get_contents("php://input"));//
 
             if (
                 empty($data->clave) ||

@@ -5,18 +5,17 @@ document.addEventListener('DOMContentLoaded',function(){
     obtenerProducto();
 });//ejecutar este archivo
 async function obtenerProducto() {
-    console.log("Entro aqui ");
     try {
         const respuesta = await fetch('productos/obtener-todo');
         const resultado = await respuesta.json();
-        console.log("Entro aqui 1");
+        
         if (resultado.status === 'error') {
             throw new Error(resultado.message);
         }
 
         const productos = resultado.data;
         console.log(productos);
-        console.log("Entro aqui 2");
+
         const tbody = document.getElementById('productsTableBody');
         tbody.innerHTML = '';
         
@@ -67,4 +66,62 @@ function showAlert(type, message) {
     setTimeout(() => {
         alertDiv.remove();
     }, 5000);
+}
+async function guardarProducto(){
+    try {
+        //esta obteniendo datos del formulario
+        const formData = new FormData();//envio directo todos lo datos
+        const nombre = document.getElementById('name').value;
+        const descripcion = document.getElementById('description').value;
+        const precio = document.getElementById('price').value;
+        const stock = document.getElementById('stock').value;
+        const imagenFile = document.getElementById('image').files[0];
+
+        // Validaciones
+        if (!nombre || !precio || !stock) {
+            throw new Error('Por favor complete todos los campos requeridos');
+        }
+
+        formData.append('nombre', nombre);
+        formData.append('descripcion', descripcion);
+        formData.append('precio', precio);
+        formData.append('stock', stock);
+
+        if (imagenFile) {
+            formData.append('image', imagenFile);
+        }
+
+        // const url = editingProductId ? 'products/update' : 'products/create';
+        // if (editingProductId) {
+        //     formData.append('id', editingProductId);
+        // }
+
+        const response = await fetch('productos/guardar-producto', {
+            method: 'POST',
+            body: formData
+        });
+
+        const result = await response.json();
+
+        if (result.status === 'error') {
+            throw new Error(result.message);
+        }
+
+        // Cerrar el modal, cuando llenas el formulario se cierra automaticamente
+        const modal = bootstrap.Modal.getInstance(document.getElementById('productModal'));
+        modal.hide();
+
+        // Mostrar mensaje de éxito
+        showAlert('success', result.message);
+
+        // Recargar la lista de productos
+        obtenerProducto();
+
+        // Resetear el formulario
+        //resetForm();
+
+
+    } catch (error) {
+        showAlert('error', error.message);
+    }
 }
